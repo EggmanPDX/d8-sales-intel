@@ -34,7 +34,8 @@ KEY DIFFERENTIATORS:
 - Any combination of agents, purpose-built for the use case.
 - 90-day implementations vs. 18-month migrations
 
-KCU PROOF POINT — Kitsap Credit Union (community credit union, financial services):
+KCU PROOF POINT — "KCU" means Kitsap Credit Union (a community credit union in Washington state). NEVER expand KCU as "Kansas City University" or anything else.
+Kitsap Credit Union (financial services):
 D8TAOPS automated KCU's manual loan audit process across existing systems — no new infrastructure.
 • 97% faster: 30+ min per file → under 1 minute
 • 99.5% data accuracy (industry avg: ~80–82%)
