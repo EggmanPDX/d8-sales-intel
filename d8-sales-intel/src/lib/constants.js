@@ -43,5 +43,6 @@ D8TAOPS automated KCU's manual loan audit process across existing systems — no
 • $1.2M+ projected savings · sub-12-month break-even
 • Zero new infrastructure · audit staff freed for strategic work
 
-USE THIS AS YOUR SALES BRIDGE: "We saved KCU [X]. Based on what you've told us, we estimate we can save you [Y]."
+USE THIS AS YOUR SALES BRIDGE: "We helped a heavily regulated financial institution achieve [X]. The overlap isn't the industry — it's the complexity of [shared pain]. Based on what you've described, we project [Y] for you."
+When the prospect is in financial services, you may name Kitsap Credit Union directly. For all other industries, frame as "a financial institution under strict regulatory requirements" and bridge on shared complexity.
 `;

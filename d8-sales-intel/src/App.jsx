@@ -44,7 +44,7 @@ export default function App() {
     setLoading(true); setLoadMsg('Writing sales materials...');
     try {
       const m = await claudeJSON(SYS_EXPORT,
-        `Prospect: ${form.company || form.industry + ' prospect'}\nContact: ${form.contact || 'Stakeholder'}\nGoal: ${form.useCase}\nSolution: ${JSON.stringify({ headline: solution?.headline, agents: solution?.agents?.map(a => a.id), workflow: solution?.workflow })}\nROI: ${fmtK(r.total)} annual value · ${r.roiPct}% ROI · ${r.payback}-month payback · ${r.hrsSaved.toLocaleString()} person-hrs/yr · ${roi.hrs * roi.staff} hrs/cycle → ${r.aiMins} min\nKCU: $1.2M+ savings, 97% faster, 99.5% accuracy, sub-12-month break-even — use as proof point bridge.`,
+        `Prospect: ${form.company || form.industry + ' prospect'}\nContact: ${form.contact || 'Stakeholder'}\nGoal: ${form.useCase}\nSolution: ${JSON.stringify({ headline: solution?.headline, agents: solution?.agents?.map(a => a.id), workflow: solution?.workflow })}\nROI: ${fmtK(r.total)} annual value · ${r.roiPct}% ROI · ${r.payback}-month payback · ${r.hrsSaved.toLocaleString()} person-hrs/yr · ${roi.hrs * roi.staff} hrs/cycle → ${r.aiMins} min\nKCU (Kitsap Credit Union): $1.2M+ savings, 97% faster, 99.5% accuracy, sub-12-month break-even. Frame as "a heavily regulated financial institution" unless prospect is in financial services. Bridge on shared complexity (compliance, accuracy mandates, audit requirements), not the vertical.`,
         { maxTokens: 2048 });
       setMaterials(m); setStep(4);
     } catch (e) { alert('Export failed: ' + e.message); }

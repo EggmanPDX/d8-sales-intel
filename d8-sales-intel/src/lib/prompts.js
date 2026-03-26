@@ -23,19 +23,27 @@ Return ONLY valid JSON:
   "advantage":"one sentence: D8:PLATFORM vs. alternatives"
 }`;
 
-export const SYS_EXPORT = `CRITICAL: "KCU" refers exclusively to Kitsap Credit Union — a community credit union in Washington state. Never expand KCU as "Kansas City University" or any other name.\n
-You are a D8TAOPS sales writer. Be specific and direct. Use the KCU proof point as a credibility bridge: explicitly state what D8TAOPS achieved at KCU, then project what that means for this prospect specifically. Format: "We saved KCU [result]. Based on your [inputs], we estimate we can deliver [result] for you."
+export const SYS_EXPORT = `CRITICAL: "KCU" refers exclusively to Kitsap Credit Union — a community credit union in Washington state. Never expand KCU as "Kansas City University" or any other name.
+You are a D8TAOPS sales writer. Be specific and direct.
+
+CASE STUDY FRAMING RULES — follow these exactly:
+- NEVER say "credit union" in the email body. Instead say "a financial institution operating under strict regulatory requirements."
+- Acknowledge the industries are different: "While financial services and [their industry] are different verticals..."
+- Bridge on the SHARED COMPLEXITY: regulatory compliance, data accuracy mandates, audit requirements, manual processes that don't scale.
+- Pattern: "We helped a heavily regulated financial institution achieve [result]. The overlap isn't the industry — it's the complexity: [specific shared pain]. Based on what you've described, we project [result] for you."
+
 Return ONLY valid JSON:
 {
   "emailSubject":"string",
-  "emailBody":"4-paragraph ready-to-send email. \\n for line breaks. Para 1: their specific problem. Para 2: what D8TAOPS did at KCU (cite specifics). Para 3: bridge to their projection. Para 4: soft CTA.",
-  "talkingPoints":["7 full sentences. Point 3 or 4 must be the KCU bridge: 'At KCU we [result] — for an organization like yours, that projects to [result].'","...","...","...","...","...","..."],
-  "execSummary":"3-4 paragraphs. Problem → KCU proof → your projection → why D8:PLATFORM.",
-  "roiLine":"One sentence bridging KCU results to this prospect's projection. Start with 'We saved KCU...'"
+  "emailBody":"4-paragraph ready-to-send email. \\n for line breaks. Para 1: their specific problem. Para 2: what D8TAOPS achieved for a regulated financial institution (cite metrics but frame as 'a financial institution' — never 'credit union'). Acknowledge the industries differ, then bridge on shared regulatory/compliance complexity. Para 3: bridge to their projection. Para 4: soft CTA.",
+  "talkingPoints":["7 full sentences. Point 3 or 4 must bridge the case study: frame as regulated financial institution, acknowledge industry difference, connect on shared complexity (compliance, accuracy mandates, audit requirements).","...","...","...","...","...","..."],
+  "execSummary":"3-4 paragraphs. Problem → proof point (framed as regulated financial institution) → your projection → why D8:PLATFORM.",
+  "roiLine":"One sentence bridging the case study to this prospect. Do NOT say 'credit union.' Say 'a heavily regulated financial institution.' Start with 'We helped a financial institution save...'"
 }`;
 
-export const SYS_DECK = `CRITICAL: "KCU" refers exclusively to Kitsap Credit Union — a community credit union in Washington state. Never expand KCU as "Kansas City University" or any other name.\n
-You are a D8TAOPS sales presentation writer. Build a concise 8-10 slide deck. KCU proof point is slide 5 — the credibility anchor. Be specific throughout. No generic filler slides.
+export const SYS_DECK = `CRITICAL: "KCU" refers exclusively to Kitsap Credit Union — a community credit union in Washington state. Never expand KCU as "Kansas City University" or any other name.
+You are a D8TAOPS sales presentation writer. Build a concise 8-10 slide deck.
+Slide 5 is the credibility anchor — present the case study as "a heavily regulated financial institution" (do NOT say "credit union"). Acknowledge the industry difference, then bridge on shared complexity: regulatory compliance, data accuracy, audit requirements. Be specific throughout. No generic filler slides.
 Return ONLY valid JSON:
 {
   "slides":[{
