@@ -5,7 +5,7 @@ const card = (x = {}) => ({ background: WHITE, borderRadius: 12, padding: '20px 
 const h2   = { color: NAVY, fontSize: 14, fontWeight: 600, margin: '0 0 12px' };
 const ovl  = { fontSize: 9, fontWeight: 700, color: BLUE, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 8 };
 
-export default function StepROI({ roi, setRoi, loading, loadMsg, setStep, onExport }) {
+export default function StepROI({ roi, setRoi, roiTouched, setRoiTouched, loading, loadMsg, setStep, onExport }) {
   const r = calcROI(roi);
 
   const btnP = (dis) => ({ background: dis ? '#93C5FD' : BLUE, color: '#fff', border: 'none', borderRadius: 7, padding: '11px 22px', fontSize: 13, fontWeight: 600, cursor: dis ? 'not-allowed' : 'pointer', fontFamily: 'inherit' });
@@ -19,14 +19,21 @@ export default function StepROI({ roi, setRoi, loading, loadMsg, setStep, onExpo
       </div>
       <input type="range" min={min} max={max} step={step} value={roi[field]}
         style={{ width: '100%', accentColor: BLUE, cursor: 'pointer' }}
-        onChange={e => setRoi(p => ({ ...p, [field]: Number(e.target.value) }))} />
+        onChange={e => { setRoi(p => ({ ...p, [field]: Number(e.target.value) })); setRoiTouched(true); }} />
     </div>
   );
 
   return (
     <div>
       <div style={{ background: NAVY, borderRadius: 12, padding: '20px 26px', marginBottom: 14 }}>
-        <div style={{ ...ovl, color: '#7FC5F0', marginBottom: 12 }}>KCU-CALIBRATED ROI PROJECTION</div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+          <div style={{ ...ovl, color: '#7FC5F0', marginBottom: 0 }}>KCU-CALIBRATED ROI PROJECTION</div>
+          {!roiTouched && (
+            <div style={{ fontSize: 9, fontWeight: 600, color: '#FCD34D', background: 'rgba(252,211,77,0.15)', padding: '3px 10px', borderRadius: 4 }}>
+              ⚠ ILLUSTRATIVE — adjust sliders with real data
+            </div>
+          )}
+        </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 8 }}>
           {[
             { val: fmtK(r.total), lbl: 'Est. Annual Value', green: true },

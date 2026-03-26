@@ -32,6 +32,11 @@ CASE STUDY FRAMING RULES — follow these exactly:
 - Bridge on the SHARED COMPLEXITY: regulatory compliance, data accuracy mandates, audit requirements, manual processes that don't scale.
 - Pattern: "We helped a heavily regulated financial institution achieve [result]. The overlap isn't the industry — it's the complexity: [specific shared pain]. Based on what you've described, we project [result] for you."
 
+ROI CONFIDENCE RULES:
+- If "ROI CONFIDENCE: ILLUSTRATIVE-DEFAULTS" — do NOT put specific dollar amounts in the email. Use relative metrics only: "97% time reduction", "99.5% accuracy", "sub-12-month break-even". Invite prospect to share their numbers.
+- If "ROI CONFIDENCE: USER-CONFIRMED" — you may cite the specific dollar projections.
+- Always lead with the KCU-proven percentages (97% faster, 99.5% accuracy) — these are real and defensible regardless of confidence level.
+
 Return ONLY valid JSON:
 {
   "emailSubject":"string",
