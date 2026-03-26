@@ -46,7 +46,7 @@ export default function App() {
     try {
       const roiConfidence = roiTouched ? 'USER-CONFIRMED' : 'ILLUSTRATIVE-DEFAULTS';
       const m = await claudeJSON(SYS_EXPORT,
-        `Prospect: ${form.company || form.industry + ' prospect'}\nContact: ${form.contact || 'Stakeholder'}\nGoal: ${form.useCase}\nSolution: ${JSON.stringify({ headline: solution?.headline, agents: solution?.agents?.map(a => a.id), workflow: solution?.workflow })}\nROI CONFIDENCE: ${roiConfidence}\nROI: ${fmtK(r.total)} annual value · ${r.roiPct}% ROI · ${r.payback}-month payback · ${r.hrsSaved.toLocaleString()} person-hrs/yr · ${roi.hrs * roi.staff} hrs/cycle → ${r.aiMins} min\nKCU (Kitsap Credit Union): $1.2M+ savings, 97% faster, 99.5% accuracy, sub-12-month break-even. Frame as "a heavily regulated financial institution" unless prospect is in financial services. Bridge on shared complexity (compliance, accuracy mandates, audit requirements), not the vertical.\n${roiConfidence === 'ILLUSTRATIVE-DEFAULTS' ? 'IMPORTANT: ROI inputs are illustrative defaults — the user did NOT provide real numbers. Do NOT cite specific dollar amounts in the email. Instead use relative metrics: "97% reduction in processing time", "99.5% data accuracy vs. industry average of 80-82%", "sub-12-month break-even." Invite the prospect to share their numbers for a custom projection.' : 'ROI inputs have been confirmed by the sales leader. You may cite specific dollar projections.'}`,
+        `Prospect: ${form.company || form.industry + ' prospect'}\nIndustry: ${form.industry}\nContact: ${form.contact || 'Stakeholder'}\nGoal: ${form.useCase}\nSolution: ${JSON.stringify({ headline: solution?.headline, agents: solution?.agents?.map(a => a.id), workflow: solution?.workflow })}\nROI CONFIDENCE: ${roiConfidence}\nROI: ${fmtK(r.total)} annual value · ${r.roiPct}% ROI · ${r.payback}-month payback · ${r.hrsSaved.toLocaleString()} person-hrs/yr · ${roi.hrs * roi.staff} hrs/cycle → ${r.aiMins} min\nKCU (Kitsap Credit Union): $1.2M+ savings, 97% faster, 99.5% accuracy, sub-12-month break-even. Frame as "a heavily regulated financial institution" unless prospect is in financial services. Bridge on shared complexity (compliance, accuracy mandates, audit requirements), not the vertical.\n${roiConfidence === 'ILLUSTRATIVE-DEFAULTS' ? 'IMPORTANT: ROI inputs are illustrative defaults — the user did NOT provide real numbers. Do NOT cite specific dollar amounts in the email. Instead use relative metrics: "97% reduction in processing time", "99.5% data accuracy vs. industry average of 80-82%", "sub-12-month break-even." Invite the prospect to share their numbers for a custom projection.' : 'ROI inputs have been confirmed by the sales leader. You may cite specific dollar projections.'}`,
         { maxTokens: 2048 });
       setMaterials(m); setStep(4);
     } catch (e) { alert('Export failed: ' + e.message); }
@@ -56,14 +56,21 @@ export default function App() {
   const runDeck = async () => {
     if (deck) return;
     const r = calcROI(roi);
+    const roiConfidence = roiTouched ? 'USER-CONFIRMED' : 'ILLUSTRATIVE-DEFAULTS';
     setDeckBusy(true);
     try {
       const d = await claudeJSON(SYS_DECK,
-        `Prospect: ${form.company || form.industry + ' prospect'}\nIndustry: ${form.industry}\nGoal: ${form.useCase}\nSolution headline: ${solution?.headline}\nAgents: ${solution?.agents?.map(a => a.id + ' — ' + a.role).join('; ')}\nWorkflow: ${solution?.workflow}\nROI: ${fmtK(r.total)} · ${r.roiPct}% ROI · ${r.payback}-month payback · ${r.hrsSaved.toLocaleString()} person-hrs/yr saved`,
+        `Prospect: ${form.company || form.industry + ' prospect'}\nIndustry: ${form.industry}\nGoal: ${form.useCase}\nSolution headline: ${solution?.headline}\nAgents: ${solution?.agents?.map(a => a.id + ' — ' + a.role).join('; ')}\nWorkflow: ${solution?.workflow}\nROI CONFIDENCE: ${roiConfidence}\nROI: ${fmtK(r.total)} · ${r.roiPct}% ROI · ${r.payback}-month payback · ${r.hrsSaved.toLocaleString()} person-hrs/yr saved\n${roiConfidence === 'ILLUSTRATIVE-DEFAULTS' ? 'IMPORTANT: ROI figures are illustrative defaults. Use relative metrics (97% faster, 99.5% accuracy, sub-12-month break-even) instead of specific dollar amounts on slides.' : 'ROI figures are confirmed by the sales leader. You may cite specific dollar projections on slides.'}`,
         { maxTokens: 4096 });
       setDeck(d);
     } catch (e) { alert('Deck failed: ' + e.message); }
     setDeckBusy(false);
+  };
+
+  const handleRoiChange = (updater) => {
+    setRoi(updater);
+    setMaterials(null);
+    setDeck(null);
   };
 
   const handleReset = () => {
@@ -78,7 +85,7 @@ export default function App() {
       <div style={{ maxWidth: 880, margin: '0 auto', padding: '24px 18px 60px' }}>
         {step === 1 && <StepTarget form={form} setForm={setForm} loading={loading} loadMsg={loadMsg} onAnalyze={runAnalysis} />}
         {step === 2 && <StepSolution form={form} research={research} solution={solution} setStep={setStep} />}
-        {step === 3 && <StepROI roi={roi} setRoi={setRoi} roiTouched={roiTouched} setRoiTouched={setRoiTouched} loading={loading} loadMsg={loadMsg} setStep={setStep} onExport={runExport} />}
+        {step === 3 && <StepROI roi={roi} setRoi={handleRoiChange} roiTouched={roiTouched} setRoiTouched={setRoiTouched} loading={loading} loadMsg={loadMsg} setStep={setStep} onExport={runExport} />}
         {step === 4 && <StepExport form={form} solution={solution} materials={materials} roi={roi} roiTouched={roiTouched} deck={deck} deckBusy={deckBusy} onDeck={runDeck} setStep={setStep} onReset={handleReset} />}
       </div>
     </div>
