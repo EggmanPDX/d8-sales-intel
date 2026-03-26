@@ -7,11 +7,11 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     server: {
       proxy: {
-        '/api/anthropic': {
+        '/api/claude': {
           target: 'https://api.anthropic.com',
           changeOrigin: true,
           secure: true,
-          rewrite: (path) => path.replace(/^\/api\/anthropic/, ''),
+          rewrite: () => '/v1/messages',
           configure: (proxy) => {
             proxy.on('proxyReq', (proxyReq) => {
               proxyReq.setHeader('x-api-key', env.VITE_ANTHROPIC_API_KEY);

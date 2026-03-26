@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(git remote:*)",
-      "Bash(curl -s -X POST http://localhost:5173/api/anthropic/v1/messages -H \"Content-Type: application/json\" -d '{\"\"\"\"model\"\"\"\":\"\"\"\"claude-sonnet-4-20250514\"\"\"\",\"\"\"\"max_tokens\"\"\"\":10,\"\"\"\"messages\"\"\"\":[{\"\"\"\"role\"\"\"\":\"\"\"\"user\"\"\"\",\"\"\"\"content\"\"\"\":\"\"\"\"hi\"\"\"\"}]}')"
+      "Bash(curl -s -X POST http://localhost:5173/api/anthropic/v1/messages -H \"Content-Type: application/json\" -d '{\"\"\"\"model\"\"\"\":\"\"\"\"claude-sonnet-4-20250514\"\"\"\",\"\"\"\"max_tokens\"\"\"\":10,\"\"\"\"messages\"\"\"\":[{\"\"\"\"role\"\"\"\":\"\"\"\"user\"\"\"\",\"\"\"\"content\"\"\"\":\"\"\"\"hi\"\"\"\"}]}')",
+      "Bash(sudo npm:*)"
     ]
   }
 }

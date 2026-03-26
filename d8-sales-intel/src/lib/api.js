@@ -1,5 +1,5 @@
 export async function claudeJSON(system, user) {
-  const res = await fetch('/api/anthropic/v1/messages', {
+  const res = await fetch('/api/claude', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
