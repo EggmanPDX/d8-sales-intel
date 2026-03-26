@@ -4,7 +4,7 @@ import { calcROI, fmt, fmtK } from '../lib/roi';
 
 const card = (x = {}) => ({ background: WHITE, borderRadius: 12, padding: '20px 24px', marginBottom: 14, boxShadow: '0 1px 4px rgba(0,0,0,0.06)', border: `1px solid ${BORDER}`, ...x });
 
-export default function StepExport({ form, solution, materials, roi, deck, deckBusy, onDeck, setStep, onReset }) {
+export default function StepExport({ form, solution, materials, roi, roiTouched, deck, deckBusy, onDeck, setStep, onReset }) {
   const [tab, setTab]       = useState('email');
   const [copied, setCopied] = useState('');
 
@@ -68,6 +68,17 @@ export default function StepExport({ form, solution, materials, roi, deck, deckB
           <div style={{ fontSize: 14, fontStyle: 'italic', color: NAVY, lineHeight: 1.65 }}>"{materials.roiLine}"</div>
         </div>
       )}
+
+      <div style={{ ...card(), background: '#FFFBEB', border: '1.5px solid #FDE68A', display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+        <div style={{ fontSize: 18, lineHeight: 1 }}>⚠</div>
+        <div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#92400E', marginBottom: 4 }}>Review Before Sending</div>
+          <div style={{ fontSize: 11, color: '#78350F', lineHeight: 1.6 }}>
+            Industry stats, KPIs, and projected metrics are AI-generated estimates. Verify that benchmarks match this prospect's reality before presenting. KCU results (97% faster, 99.5% accuracy, $1.2M savings) are confirmed — all other figures are projections.
+            {!roiTouched && <span style={{ fontWeight: 600 }}> ROI inputs are still at default values — adjust with real data for accurate projections.</span>}
+          </div>
+        </div>
+      </div>
 
       <div style={card()}>
         <div style={{ display: 'flex', gap: 6, marginBottom: 14, flexWrap: 'wrap', alignItems: 'center' }}>
