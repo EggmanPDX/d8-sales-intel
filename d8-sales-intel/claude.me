@@ -1,0 +1,111 @@
+In VS Code, create a new file in the project root called `CLAUDE.md` (File → New File, save as `CLAUDE.md`).
+Paste this content exactly:
+
+```markdown
+# D8TAOPS Sales Intelligence Platform
+
+## What This Is
+A 4-step sales tool for D8TAOPS Sales Leaders (SLs).
+SL enters industry + use case → gets tailored D8:PLATFORM agent config,
+KCU-calibrated ROI model, and ready-to-use sales materials
+(email, talking points, exec summary, ROI card, slide deck outline).
+
+## Tech Stack
+- React + Vite
+- Tailwind CSS
+- Claude API (claude-sonnet-4-20250514) — 4 AI calls total
+- No backend. No database. No auth. No Stripe.
+- Deploy: Vercel
+
+## Brand
+- Font: IBM Plex Sans (Google Fonts)
+- Navy: #1B3A5C
+- Blue: #0477BF
+- BG: #EFF2F6
+- White: #FFFFFF
+- Border: #DDE2EA
+
+## App Structure
+4 steps, all state in React memory (no persistence):
+1. Target — input form (industry + use case required, company/contact optional)
+2. Solution — AI-generated agent config, pain points, benchmarks
+3. ROI Model — KCU-calibrated calculator with 6 sliders + KCU bridge block
+4. Export — 5 tabs: Email, Talking Points, Exec Summary, ROI Card, Slide Deck
+
+## ROI Formula (KCU-calibrated — do not change)
+annualCycles = vol × 12
+totalHrsPerCycle = hrs × staff
+aiHrs = totalHrsPerCycle × 0.03        // 97% reduction
+hrsSaved = (totalHrsPerCycle - aiHrs) × annualCycles
+timeSave = hrsSaved × rate
+errSave = annualCycles × max(0, errPct/100 - 0.005) × errCost
+total = timeSave + errSave
+impl = max(65000, min(280000, vol × 45 + 40000))
+roiPct = ((total - impl) / impl) × 100
+payback = ceil(impl / (total / 12))
+
+## Claude API Calls
+Endpoint: POST https://api.anthropic.com/v1/messages
+Headers: Content-Type: application/json (no API key — injected by platform)
+Model: claude-sonnet-4-20250514
+max_tokens: 1000
+All responses: JSON only. Strip ```json fences before parsing.
+
+Calls:
+1. SYS_RESEARCH — on "Analyze" button. Returns: companyProfile, painPoints, benchmarks, opportunities
+2. SYS_SOLUTION — immediately after research. Returns: headline, sub, agents[], workflow, outcomes[], advantage
+3. SYS_EXPORT — on "Generate Materials" button. Returns: emailSubject, emailBody, talkingPoints[], execSummary, roiLine
+4. SYS_DECK — on "Generate Deck" button (on-demand). Returns: slides[]
+
+Exact system prompt text is in REFERENCE_prototype.jsx — use it verbatim.
+
+## Agent Registry (for Step 2 display)
+INGEST #0477BF | CAT #0D5F8C | CURATE #167A45 | FLOW #6B3FA0
+SEC #B45A00 | OBSERVE #C41E3A | STAGE #2E7D32 | VIEW #1B3A5C
+
+## Coding Rules
+- Always: Tailwind for all styling — no inline style objects except dynamic hex colors
+- Always: IBM Plex Sans loaded via Google Fonts link in index.html
+- Always: Show loading state with descriptive message during every API call
+- Always: Strip ```json fences before JSON.parse on every API response
+- Always: Wrap all API calls in try/catch with user-facing error messages
+- Never: Add auth, database, sessions, or any form of persistence
+- Never: Add features not in this spec — park them in a comment marked // v2
+- Never: Change the ROI formula
+- Never: Change the system prompt text — copy from REFERENCE_prototype.jsx verbatim
+
+## File Structure
+src/
+  App.jsx                — main 4-step component, state management
+  components/
+    NavBar.jsx           — sticky step nav (4 pills, completed = ✓)
+    StepTarget.jsx       — Step 1 input form
+    StepSolution.jsx     — Step 2 AI output display
+    StepROI.jsx          — Step 3 calculator + KCU bridge block
+    StepExport.jsx       — Step 4 export tabs + deck renderer
+  lib/
+    agentRegistry.js     — agent definitions (id, label, color, short desc)
+    roiCalc.js           — ROI formula, single source of truth
+    prompts.js           — all 4 system prompt strings (from reference)
+    claudeAPI.js         — all 4 fetch functions
+  index.css              — Tailwind directives only
+
+## V2 Backlog (do not build in v1)
+- .pptx file download
+- PDF export
+- Auth / login
+- Session saving or history
+- Team sharing
+- CRM push
+- Live web research on company name
+- Stripe / payments
+- Mobile-optimized layout
+- Admin panel or usage analytics
+```
+
+Commit it:
+```bash
+git add CLAUDE.md
+git commit -m "add: CLAUDE.md project context"
+git push
+```
