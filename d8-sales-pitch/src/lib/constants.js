@@ -32,7 +32,7 @@ KEY DIFFERENTIATORS:
 - Agents travel TO data wherever it lives — Databricks, Snowflake, legacy, cloud, on-prem, any system
 - No migration required. Data never leaves client infrastructure.
 - Any combination of agents, purpose-built for the use case.
-- 90-day implementations vs. 18-month migrations
+- Faster implementation — days and weeks instead of the months-long migrations competitors require
 
 KCU PROOF POINT — "KCU" means Kitsap Credit Union (a community credit union in Washington state). NEVER expand KCU as "Kansas City University" or anything else.
 Kitsap Credit Union (financial services):

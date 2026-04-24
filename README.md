@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# D8_SALES_PITCH
 
-## Getting Started
+This is the `D8_SALES_PITCH` workspace. The primary tool app is located in the `d8-sales-pitch/` folder and is a Vite-based webapp for D8TAOPS sales case studies.
 
-First, run the development server:
+> Note: the root folder contains an older Next.js starter app. The actual working product is `d8-sales-pitch/`.
+
+## Project structure
+
+- `d8-sales-pitch/` — main D8/SALES_PITCH webapp
+- `SUMMARY.md` — current build status and tool description
+- `README.md` — top-level workspace documentation
+
+## How to run the actual tool
 
 ```bash
+cd /Users/greggeiler/Developer/D8_SALES_PITCH/d8-sales-pitch
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open the local app at the URL Vite reports, typically:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+http://localhost:5173
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+If that port is in use, Vite will choose the next available port.
 
-## Learn More
+## What this tool does
 
-To learn more about Next.js, take a look at the following resources:
+`D8_SALES_PITCH` is a webapp for D8TAOPS sales teams to enter a specific case study and see how our agents will handle the work. It captures industry and use-case details, generates a tailored solution narrative, and produces sales-ready output such as:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- solution description
+- ROI model
+- slide deck outline
+- export-ready content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Notes
 
-## Deploy on Vercel
+The root workspace is renamed to `D8_SALES_PITCH`, and the nested app is now `d8-sales-pitch/`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If you want to work on the older Next.js starter files, they remain in the root `src/` folder, but the main product lives in `d8-sales-pitch/`.

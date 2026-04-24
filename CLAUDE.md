@@ -1,10 +1,10 @@
-# CLAUDE.md — Sales Leader Tool
+# CLAUDE.md — D8/SALES_PITCH
 
 @AGENTS.md
 
 ## Context
 
-D8TAOPS internal webapp — Sales Leader Tool. Built to support D8TAOPS sales operations.
+D8TAOPS internal webapp — D8/SALES_PITCH. Built to support D8TAOPS sales operations and case-study-driven sales enablement.
 
 Full personal and professional context is in `~/.claude/CLAUDE.md`.
 
